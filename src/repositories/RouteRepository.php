@@ -15,7 +15,7 @@ class RouteRepository
 	 *
 	 * @param string $departure
 	 *
-	 * @return array $routelist
+	 * @return array
 	 */
 	public function getAllStationRoutes($departure)
 	{
@@ -39,7 +39,7 @@ class RouteRepository
 	 * @param string $departure
 	 * @param string $arrival
 	 *
-	 * @return string $notification
+	 * @return string
 	 */
 	public function getNotification($departure, $arrival)
 	{

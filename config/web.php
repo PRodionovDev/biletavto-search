@@ -6,6 +6,12 @@
  */
 $db = require(__DIR__ . '/db.php');
 
+/**
+ * Connect parameters
+ *
+ */
+$params = require(__DIR__ . '/params.php');
+
 return [
 
 	/**
@@ -87,5 +93,11 @@ return [
                 ]
             ]
         ]
-    ]
+    ],
+
+    /**
+     * Parameters
+     *
+     */
+    'params' => $params
 ];
