@@ -18,6 +18,9 @@ a {
 	.navbar-nav {
 		display: inherit !important;
 	}
+	.replace-value {
+		display: none;
+	}
 }
 .btn-default{
 	background-color: transparent;
@@ -68,6 +71,11 @@ a {
 }
 
 /*****FORM*****/
+.ride-search {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: #132f5b;
+}
 .ba-container {
 	padding: 0px;
 	text-align: center !important;
@@ -92,6 +100,38 @@ a {
 .ba-container .btn {
 	min-height: 60px;
 	min-width: 195px;
+}
+.help-block {
+	color: #e15b5b;
+}
+.form-control {
+	border-radius: 0 !important;
+}
+.padding-side-0 {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.replace-value {
+  color: #122f5b;
+  font-size: xx-large;
+  position: absolute;
+  padding-top: 2px;
+  cursor: pointer;
+}
+.search-date-blc p{
+  display: ruby;
+}
+.search-date-blc button{
+  border: none;
+  background: transparent;
+}
+.search-date {
+  color: #a94442;
+  font-weight: 600;
+}
+.search-date:hover {
+  color: #682827;
+  font-weight: 600;
 }
 
 /*****ABOUT*****/

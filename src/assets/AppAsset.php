@@ -36,6 +36,8 @@ class AppAsset extends AssetBundle
      *
      */
     public $js = [
+        'js/bootstrap.min.js',
+        'js/search.script.js'
     ];
 
     /**

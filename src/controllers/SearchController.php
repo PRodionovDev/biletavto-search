@@ -3,6 +3,7 @@
 namespace application\controllers;
 
 use yii\web\Controller;
+use application\models\forms\RideSearchForm;
 
 /**
  * Search base controller
@@ -17,6 +18,10 @@ class SearchController extends Controller
 	 */
     public function actionIndex()
     {
-        return $this->render('index');
+    	$model = new RideSearchForm();
+    	
+        return $this->render('index', [
+        	'model' => $model
+        ]);
     }
 }
