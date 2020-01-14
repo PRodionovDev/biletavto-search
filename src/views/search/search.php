@@ -21,18 +21,18 @@ $this->title = 'Билетавто';
 
     <div class="container">
         <div class="row">
-            <div class="col-md-3 padding-side-0">
+            <div class="col-md-3 padding-side-0 padding-side-mobile-15">
                 <?= $form->field($model, 'departure')->textInput(['placeholder' => 'Откуда', 'id' => 'departure'])->label(false) ?>
                 <div class="offset-md-10">
                     <p onclick="return replaceValue(departure, arrival)"><span class="glyphicon glyphicon-transfer replace-value"></span></p>
                 </div>
             </div>
-            <div class="col-md-3 padding-side-0">
-                <div class="col-md-12">
+            <div class="col-md-3 padding-side-0 padding-side-mobile-15">
+                <div class="col-md-12 padding-side-0">
                     <?= $form->field($model, 'arrival')->textInput(['placeholder' => 'Куда', 'id' => 'arrival'])->label(false) ?>
                 </div>
             </div>
-            <div class="col-md-3 padding-side-0">
+            <div class="col-md-3 padding-side-0 padding-side-mobile-15">
             	<?= $form->field($model, 'date')->widget(DatePicker::className(),[
                         'id' => 'date',
             			'name' => 'date',
@@ -48,7 +48,7 @@ $this->title = 'Билетавто';
                         ]])->label(false) ?>
                 <div class="text-center search-date-blc">
                     <?= Html::button('Сегодня: ' . date("d.m"), ['class' => 'search-date', 'onclick' => 'chooseToday()']); ?>
-                    <p class="text-danger"><strong>Проверьте внимательно дату отправления</strong><p>
+                    <p class="text-danger no_mobile"><strong>Проверьте внимательно дату отправления</strong><p>
                 </div>
             </div>
             <div class="col-md-3">
