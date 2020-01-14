@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Connect database's configuration
+ *
+ */
+$db = require(__DIR__ . '/db.php');
+
 return [
 
 	/**
@@ -41,6 +47,12 @@ return [
 	 *
 	 */
     'components' => [
+
+        /**
+         * Database component
+         *
+         */
+        'db' => $db,
 
     	/**
     	 * Request
