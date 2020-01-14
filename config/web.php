@@ -13,7 +13,9 @@ return [
 	 *
 	 */
     'aliases' => [
-        '@application' => dirname(__DIR__) . '/src'
+        '@application' => dirname(__DIR__) . '/src',
+        '@bower' => '@vendor/bower-asset',
+        '@npm'   => '@vendor/npm-asset'
     ],
 
     /**
@@ -32,5 +34,32 @@ return [
 	 * The default route of this module
 	 *
 	 */
-    'defaultRoute' => 'search'
+    'defaultRoute' => 'search',
+
+    /**
+	 * The list of the component definitions or the loaded component instances (ID => definition or instance)
+	 *
+	 */
+    'components' => [
+
+    	/**
+    	 * Request
+    	 *
+    	 */
+    	'request' => [
+            'cookieValidationKey' => 'n_b41gjXn9yfZLmWGyjs9l8UUnHuh5TX',
+        ],
+
+    	/**
+    	 * View's component
+    	 *
+    	 */
+    	'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@app/views' => '@application/views'
+                ]
+            ]
+        ]
+    ]
 ];

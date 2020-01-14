@@ -1,0 +1,143 @@
+/*****COMMON*****/
+* {
+	text-align: justify;
+}
+a {
+	text-decoration: none !important;
+}
+@media (max-width: 768px) {
+	.no_mobile {
+		display: none !important;
+	}
+	.ba-navbar {
+		height: auto !important;
+	}
+	.navbar-toggler {
+		height: 60px;
+	}
+	.navbar-nav {
+		display: inherit !important;
+	}
+}
+.btn-default{
+	background-color: transparent;
+	color: #3F51B5;
+	border-color: #3F51B5;
+
+}
+.btn-default:hover {
+	color: #fff;
+	border-color: #fff;
+	background-color: #3F51B5;
+}
+
+/*****NAVBAR*****/
+.ba-navbar {
+	height: 80px;
+	background-color: #fff;
+}
+.ba-navbar a{
+	color: #000;
+	margin: 15px;
+}
+.ba-navbar a:hover{
+	color: #c8c8c8;
+}
+.navbar-brand img{
+	height: 60px;
+}
+.navbar-menu {
+	padding-right: 0px;
+	justify-content: end;
+}
+.dropdown-menu a{
+	color: #000;
+}
+.dropdown-menu a:hover{
+	color: #000;
+}
+.dropdown-menu li:hover{
+	background-color: #ececec;
+}
+.dropdown-menu hr {
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+.phone a{
+	color: #737272;
+}
+
+/*****FORM*****/
+.ba-container {
+	padding: 0px;
+	text-align: center !important;
+	color: #fff;
+}
+.ba-container h1 {
+	text-align: center !important;
+}
+.ba-container .col {
+	padding: 2px;
+}
+.ba-container .form-control {
+	min-height: 60px;
+	min-width: 195px;
+}
+.ba-container .form-control {
+	padding-left: 25px;
+}
+.ba-container .form-control::placeholder {
+	padding-top: 0px !important;
+}
+.ba-container .btn {
+	min-height: 60px;
+	min-width: 195px;
+}
+
+/*****ABOUT*****/
+.about {
+	padding-top: 40px;
+	font-size: 16px;
+	line-height: 1.65em;
+	margin-bottom: 1rem;
+}
+
+/*****FOOTER*****/
+.footer {
+	background-color: #262e3a;
+	color: #fff;
+	padding: 20px;
+}
+.footer p {
+	text-transform: uppercase;
+	font-size: 14px;
+	line-height: 18px;
+	letter-spacing: 1px;
+	font-weight: 500;
+}
+.footer ul {
+	padding: 0;
+}
+.footer li {
+	list-style-type: none;
+}
+.footer a {
+	color: #fff;
+	font-size: 14px;
+}
+.footer a:hover {
+	color: #c8c8c8;
+}
+.social img {
+	padding-bottom: 10px;
+}
+.contact-right {
+	text-align: justify;
+	font-size: 14px;
+}
+.small-text {
+	color: rgb(187, 187, 187);
+}
+.small-text hr {
+	border-top: 1px solid rgba(187, 187, 187, 0.1);
+}
