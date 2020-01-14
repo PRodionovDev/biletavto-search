@@ -50,6 +50,20 @@ return [
             'cookieValidationKey' => 'n_b41gjXn9yfZLmWGyjs9l8UUnHuh5TX',
         ],
 
+        /**
+         * Url-manager component
+         *
+         */
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                '<departure>/<arrival>/<date>' => 'search/index',
+                '<departure>/<arrival>' => 'search/index',
+                '<action>' => 'search/<action>'
+            ]
+        ],
+
     	/**
     	 * View's component
     	 *
