@@ -5,6 +5,7 @@ namespace application\controllers;
 use Yii;
 use yii\web\Controller;
 use application\models\forms\RideSearchForm;
+use application\repositories\RouteRepository;
 
 /**
  * Search base controller
@@ -12,6 +13,22 @@ use application\models\forms\RideSearchForm;
  */
 class SearchController extends Controller
 {
+    /**
+     * Protected RouteRepository variable
+     *
+     */
+    protected $routeRepository;
+
+    /**
+     * Connect RouteRepository in controller
+     *
+     */ 
+    public function __construct($id, $module, RouteRepository $routeRepository, $config = [])
+    {
+        $this->routeRepository = $routeRepository;
+        parent::__construct($id, $module, $config);
+    }
+
 	/**
 	 * Display main-page
 	 *
@@ -26,11 +43,12 @@ class SearchController extends Controller
             $departure = $request['departure'];
             $arrival = $request['arrival'];
             $date = $request['date'];
+
+            $routelist = $this->routeRepository->getAllStationRoutes($departure);
+            $notification = $this->routeRepository->getNotification($departure, $arrival);
         }
     	
-        return $this->render('index', [
-        	'model' => $model
-        ]);
+        return $this->render('index', compact('model', 'notification', 'routelist'));
     }
 
     /**

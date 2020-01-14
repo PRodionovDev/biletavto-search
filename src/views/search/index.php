@@ -14,6 +14,20 @@ $this->title = 'Билетавто';
     ]) ?>
 
     <div class="container">
+        <?php if (!empty($notification)):?>
+           <div class="alert alert-success m-t-20"><b>Внимание! </b><?= $notification ?></div>
+        <?php endif; ?>
+        <div class="col-md-12 shadow-block">
+            <div class="row">
+                <?php if (!empty($routelist)):?>
+                    <?php foreach ($routelist as $route): ?>
+                        <div class="col-md-4">
+                            <a href="/<?= $route["start"] ?>/<?= $route["end"]?>"><?= $route["start"] ?> - <?= $route["end"]?></a>
+                        </div>
+                    <?php endforeach;?>
+                <?php endif; ?>
+            </div>
+        </div>
         <div class="about no_mobile">
             <p>Ресурс «Biletavto.ru» предлагает вашему вниманию расписание автобусов на сегодня и любую другую интересующую дату. На нашем сайте вы найдете новости с автовокзалов, изменения в времени отъезда и прибытия, а также стоимость любого билета.</p>
             <p>Автобус – это оптимальное решение для поездки. Вы сможете очень быстро и недорого добраться до пункта назначения, предварительно узнав расписание автобусов и оформив заказ билета. На сайте вы найдете свежие новости с автовокзалов, а также быстрые справки по наличию свободных мест на интересующий маршрут.</p>
