@@ -4,6 +4,7 @@ namespace application\controllers;
 
 use Yii;
 use yii\web\Controller;
+use application\components\Token;
 use application\models\forms\RideSearchForm;
 use application\repositories\RouteRepository;
 use application\services\RouteService;
@@ -51,7 +52,8 @@ class SearchController extends Controller
             $departure = $request['departure'];
             $arrival = $request['arrival'];
             $date = $request['date'];
-            $token = "";
+            $token = new Token();
+            $token = $token->getToken();
 
             $ridelist = $this->routeService->getRoute($departure, $arrival, $date, $token);
             $routelist = $this->routeRepository->getAllStationRoutes($departure);
