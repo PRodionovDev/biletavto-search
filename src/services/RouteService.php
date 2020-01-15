@@ -24,10 +24,10 @@ class RouteService
 	public function getRoute($departure, $arrival, $date, $token)
 	{
 		$rideListBiletavto = $this->getBiletavtoRoute($departure, $arrival, $date, $token);
-        //$rideListAvtovokzalOnline = $this->getAvtovokzalOnlineRoute($departure, $arrival, $date, $token);
+        $rideListAvtovokzalOnline = $this->getAvtovokzalOnlineRoute($departure, $arrival, $date, $token);
         //$rideListUnitiki = $this->getUnitikiRoute($departure, $arrival, $date, $token);
-        //$response = array_merge($rideListBiletavto, $rideListAvtovokzalOnline, $rideListUnitiki);
-        $response = $rideListBiletavto;
+        $response = array_merge($rideListBiletavto, $rideListAvtovokzalOnline/*, $rideListUnitiki*/);
+        $response = $rideListAvtovokzalOnline;
         return $response;
 	}
 
@@ -70,7 +70,7 @@ class RouteService
 		$url = Yii::$app->params['avtovokzalonline_url'];
         $response = $this->getRequest($headers, $url, $params);
 
-        return $response;
+        return $response->data;
 	}
 
 	/**
@@ -110,6 +110,7 @@ class RouteService
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
         curl_close($ch);
+        $response = json_decode($response);
 
         return $response;
 	}
