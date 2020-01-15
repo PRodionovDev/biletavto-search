@@ -25,9 +25,9 @@ class RouteService
 	{
 		$rideListBiletavto = $this->getBiletavtoRoute($departure, $arrival, $date, $token);
         $rideListAvtovokzalOnline = $this->getAvtovokzalOnlineRoute($departure, $arrival, $date, $token);
-        //$rideListUnitiki = $this->getUnitikiRoute($departure, $arrival, $date, $token);
-        $response = array_merge($rideListBiletavto, $rideListAvtovokzalOnline/*, $rideListUnitiki*/);
-        $response = $rideListAvtovokzalOnline;
+        $rideListUnitiki = $this->getUnitikiRoute($departure, $arrival, $date, $token);
+        $response = array_merge($rideListBiletavto, $rideListAvtovokzalOnline, $rideListUnitiki);
+        
         return $response;
 	}
 

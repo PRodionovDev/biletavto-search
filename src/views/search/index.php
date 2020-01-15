@@ -15,7 +15,7 @@ $this->title = 'Билетавто';
 
     <div class="container">
         <?php if (!empty($notification)):?>
-           <div class="alert alert-success m-t-20"><b>Внимание! </b><?= $notification ?></div>
+           <div class="alert alert-success"><b>Внимание! </b><?= $notification ?></div>
         <?php endif; ?>
         <div class="col-md-12 shadow-block">
             <div class="row">
