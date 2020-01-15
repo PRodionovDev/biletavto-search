@@ -5,6 +5,10 @@
 a {
 	text-decoration: none !important;
 }
+body{
+	background-color: #f5f5f5;
+	font-size: 15px;
+}
 @media (max-width: 768px) {
 	.no_mobile {
 		display: none !important;
@@ -36,6 +40,9 @@ a {
 	color: #fff;
 	border-color: #fff;
 	background-color: #3F51B5;
+}
+.jumbotron {
+	background-color: transparent !important;
 }
 
 /*****NAVBAR*****/
@@ -136,6 +143,52 @@ a {
 .search-date:hover {
   color: #682827;
   font-weight: 600;
+}
+.jumbotron h3 {
+	text-align: center;
+}
+.count-visor {
+	font-weight: 700;
+	color: #868686;
+	display: flex;
+	justify-content: center;
+}
+.search-button {
+	color: #fff;
+	font-weight: 600;
+	position: absolute;
+	padding-top: 10px;
+	padding-left: 50px;
+}
+.search-button:hover {
+  color: #d3d3d3;
+}
+
+/*****RIDE*****/
+.ridelist {
+	background-color: #fff;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.ridelist p {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.ridelist a {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.rideblock p{
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
 /*****ABOUT*****/

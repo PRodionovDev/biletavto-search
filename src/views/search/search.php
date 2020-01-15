@@ -54,6 +54,7 @@ $this->title = 'Билетавто';
             <div class="col-md-3">
                 <div class="form-group">
                     <?= Html::submitButton('Найти маршрут <span class="glyphicon glyphicon-search" aria-hidden="true"></span>', ['class' => 'btn btn-warning btn-block']) ?>
+                    <?= Html::a('Обратные рейсы',["search/index", 'departure' => $model->arrival, 'arrival' => $model->departure ,'date'=> $model->date], ['class' => 'search-button no_mobile']) ?>
                 </div>
             </div>             
         </div>
