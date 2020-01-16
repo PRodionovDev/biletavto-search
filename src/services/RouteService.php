@@ -3,6 +3,7 @@
 namespace application\services;
 
 use Yii;
+use application\components\Token;
 
 /**
  * RouteService for Search.Biletavto project
@@ -24,8 +25,18 @@ class RouteService
 	public function getRoute($departure, $arrival, $date, $token)
 	{
 		$rideListBiletavto = $this->getBiletavtoRoute($departure, $arrival, $date, $token);
+
+        if (!empty($rideListBiletavto->status)) {
+			if ($rideListBiletavto->status == 401) {
+				$token = new Token();
+				$token = $token->resetToken();
+				$rideListBiletavto = $this->getBiletavtoRoute($departure, $arrival, $date, $token);
+			}
+		}
+
         $rideListAvtovokzalOnline = $this->getAvtovokzalOnlineRoute($departure, $arrival, $date, $token);
         $rideListUnitiki = $this->getUnitikiRoute($departure, $arrival, $date, $token);
+
         $response = array_merge($rideListBiletavto, $rideListAvtovokzalOnline, $rideListUnitiki);
         
         return $response;

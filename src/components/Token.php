@@ -18,9 +18,32 @@ class Token
 	 */
 	public function getToken()
 	{
+		$cacheToken = Yii::$app->cache->get('token');
+
+		if ($cacheToken == false) {
+			$url = Yii::$app->params['auth_url'];
+			$params = array('username' => Yii::$app->params['username'], 'password' => Yii::$app->params['password']);
+	        $response = $this->getRequest($url, $params);
+
+	        Yii::$app->cache->set('token', $response, 72000);
+		} else {
+			$response = $cacheToken;
+		}
+
+        return $response->token;
+	}
+
+	/**
+	 * Reset token from Api.Biletavto
+	 *
+	 * @return string
+	 */
+	public function resetToken()
+	{
 		$url = Yii::$app->params['auth_url'];
 		$params = array('username' => Yii::$app->params['username'], 'password' => Yii::$app->params['password']);
-        $response = $this->getRequest($url, $params);
+	    $response = $this->getRequest($url, $params);
+	    Yii::$app->cache->set('token', $response, 72000);
 
         return $response->token;
 	}
