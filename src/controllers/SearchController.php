@@ -38,6 +38,26 @@ class SearchController extends Controller
         parent::__construct($id, $module, $config);
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     */
+    public function behaviors()
+    {
+        return [
+            'pageCache' => [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['index'],
+                'duration' => 120,
+                'variations' => [
+                    Yii::$app->request->get('departure'),
+                    Yii::$app->request->get('arrival'),
+                    Yii::$app->request->get('date'),
+                ]
+            ],
+        ];
+    }
+
 	/**
 	 * Display main-page
 	 *

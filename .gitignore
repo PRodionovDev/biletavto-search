@@ -10,3 +10,6 @@ composer.phar
 # configurate
 /config/db.php
 /config/params.php
+
+# cache
+/runtime

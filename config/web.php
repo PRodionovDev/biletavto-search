@@ -55,6 +55,14 @@ return [
     'components' => [
 
         /**
+         * Cache component
+         *
+         */
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
+
+        /**
          * Database component
          *
          */
