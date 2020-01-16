@@ -75,6 +75,8 @@ class SearchController extends Controller
             $token = new Token();
             $token = $token->getToken();
 
+            Yii::info($departure . ', ' . $arrival . ', ' . $date, 'search');
+
             $ridelist = $this->routeService->getRoute($departure, $arrival, $date, $token);
             $routelist = $this->routeRepository->getAllStationRoutes($departure);
             $notification = $this->routeRepository->getNotification($departure, $arrival);

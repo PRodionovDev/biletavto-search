@@ -37,6 +37,19 @@ return [
     'basePath' => dirname(__DIR__),
 
     /**
+     * Components to be called during application bootstrap stage
+     *
+     */
+    'bootstrap' => [
+
+        /**
+         * added Logger
+         *
+         */
+        'log'
+    ],
+
+    /**
 	 * The namespace that controller classes are in. This namespace will be used to load controller classes by prepending it to the controller class name
 	 *
 	 */
@@ -67,6 +80,25 @@ return [
          *
          */
         'db' => $db,
+
+        /**
+         * Logger component
+         *
+         */
+        'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'flushInterval' => 10,
+            'targets' => [
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['info', 'error', 'warning'],
+                    'categories' => ['search'],
+                    'maxLogFiles' => 20,
+                    'logVars' => [],
+                    'exportInterval' => 10
+                ]
+            ]
+        ],
 
     	/**
     	 * Request
