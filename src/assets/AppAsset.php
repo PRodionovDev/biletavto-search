@@ -28,7 +28,8 @@ class AppAsset extends AssetBundle
      */
     public $css = [
         'css/glyphicon.css',
-        'css/style.css'
+        'css/style.css',
+        'css/jquery.kladr.min.css'
     ];
 
     /**
@@ -37,7 +38,9 @@ class AppAsset extends AssetBundle
      */
     public $js = [
         'js/bootstrap.min.js',
-        'js/search.script.js'
+        'js/search.script.js',
+        'js/jquery.kladr.min.js',
+        'js/kladr.city.js'
     ];
 
     /**

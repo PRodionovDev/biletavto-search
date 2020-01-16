@@ -82,7 +82,21 @@ return [
     $ php yii migrate
   ~~~
 
-6. Комментируем во входном скрипте `public_html/index.php`, отвечающие за debug и режим разработки
+6. Добавляем токены в скрипт `public_html/js/kladr.city.js` для работы с сервисом Kladr:
+ ```js
+$(function() {
+    $('[name=departure]').kladr({
+        token: '',
+        type: $.kladr.type.city
+    });
+    $('[name=arrival]').kladr({
+        token: '',
+        type: $.kladr.type.city
+    });
+});
+ ```
+
+7. Комментируем во входном скрипте `public_html/index.php`, отвечающие за debug и режим разработки:
 ```php
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'dev');
