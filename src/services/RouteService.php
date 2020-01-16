@@ -4,6 +4,7 @@ namespace application\services;
 
 use Yii;
 use application\components\Token;
+use application\components\UrlGenerator;
 
 /**
  * RouteService for Search.Biletavto project
@@ -37,7 +38,10 @@ class RouteService
         $rideListAvtovokzalOnline = $this->getAvtovokzalOnlineRoute($departure, $arrival, $date, $token);
         $rideListUnitiki = $this->getUnitikiRoute($departure, $arrival, $date, $token);
 
+        $url = new UrlGenerator();
+
         $response = array_merge($rideListBiletavto, $rideListAvtovokzalOnline, $rideListUnitiki);
+        $response = $url->generate($response);
         
         return $response;
 	}

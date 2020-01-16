@@ -26,7 +26,7 @@
                 <p><?= $ride->arrivalStation ?></p>
             </div>
             <div class="col-md-2">
-                <p><a class="btn btn-warning btn-block" href="/">Купить за <?= $ride->price ?> &#8381;</a></p>
+                <p><a class="btn btn-warning btn-block" href="<?= $ride->url ?>">Купить за <?= $ride->price ?> &#8381;</a></p>
                 <p><a class="btn btn-outline-secondary btn-block" data-toggle="collapse" data-target="#more-info-<?= $key ?>">Подробнее</a></p>
             </div>
         </div>
