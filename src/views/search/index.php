@@ -41,7 +41,7 @@ $this->title = 'Билетавто';
                 <?php if (!empty($routelist)):?>
                     <?php foreach ($routelist as $route): ?>
                         <div class="col-md-4">
-                            <a href="/<?= $route["start"] ?>/<?= $route["end"]?>"><?= $route["start"] ?> - <?= $route["end"]?></a>
+                            <a href="/search?departure=Москва&arrival=<?= $route["end"]?>&date=<?= date('d.m.Y') ?>"><?= $route["start"] ?> - <?= $route["end"]?></a>
                         </div>
                     <?php endforeach;?>
                 <?php endif; ?>

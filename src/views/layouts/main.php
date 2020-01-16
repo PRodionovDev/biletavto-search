@@ -30,25 +30,25 @@ AppAsset::register($this);
     <section id="navbar">
         <nav class="navbar navbar-expand-lg ba-navbar">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/"><img src="/img/logo.png" alt="Билетавто"></a>
+                <a class="navbar-brand" href="https://biletavto.ru"><img src="/img/logo.png" alt="Билетавто"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-block" aria-controls="navbar-block" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="glyphicon glyphicon-th-list"></span>
                 </button>
                 <div class="collapse navbar-collapse navbar-right navbar-menu" id="navbar-block">
                     <ul class="navbar-nav nav">
                         <li><a href="/"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Расписание</a></li>
-                        <li><a href="/"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> Телефоны автовокзалов</a></li>
+                        <li><a href="https://biletavto.ru/telefony-avtovokzalov/" target="_blank"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> Телефоны автовокзалов</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> Служба поддержки</a>
                             <ul class="dropdown-menu">
-                                <li><a href="/"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Вопросы и ответы</a></li>
+                                <li><a href="https://biletavto.ru/faq/" target="_blank"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Вопросы и ответы</a></li>
                                 <hr>
                                 <li class="phone"><a href="tel:88002004401"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> 8 (800) 200-44-01</a></li>
                                 <hr>
                                 <li class="phone"><a href="mailto:info@biletavto.ru"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> info@biletavto.ru</a></li>
                             </ul>
                         </li>
-                        <li><a href="/"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Личный кабинет</a></li>
+                        <li><a href="https://biletavto.ru/auth/"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Личный кабинет</a></li>
                     </ul>
                 </div> 
             </div>
@@ -68,37 +68,37 @@ AppAsset::register($this);
                     <p>Расписание</p>
                     <ul>
                         <li><a href="/">Расписание</a></li>
-                        <li><a href="/">Расписание маршруток</a></li>
-                        <li><a href="/">Расписание пригородных маршрутов</a></li>
+                        <li><a href="https://biletavto.ru/raspisanie-marshrutok/" target="_blank">Расписание маршруток</a></li>
+                        <li><a href="https://biletavto.ru/raspisanie-prigorodnyx-marshrutov/" target="_blank">Расписание пригородных маршрутов</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2">
                     <p>Информация</p>
                     <ul>
-                        <li><a href="/">Новости и акции</a></li>
-                        <li><a href="/">Возврат билета</a></li>
-                        <li><a href="/">Вопросы и ответы</a></li>
-                        <li><a href="/">Контакты</a></li>
-                        <li><a href="/">Телефоны автовокзалов</a></li>
-                        <li><a href="/">Поиск полисов</a></li>
-                        <li><a href="/">Партнерам</a></li>
+                        <li><a href="https://biletavto.ru/news/" target="_blank">Новости и акции</a></li>
+                        <li><a href="https://biletavto.ru/vozvrat-bileta-na-avtobus/" target="_blank">Возврат билета</a></li>
+                        <li><a href="https://biletavto.ru/faq/" target="_blank">Вопросы и ответы</a></li>
+                        <li><a href="https://biletavto.ru/contacts/" target="_blank">Контакты</a></li>
+                        <li><a href="https://biletavto.ru/telefony-avtovokzalov/" target="_blank">Телефоны автовокзалов</a></li>
+                        <li><a href="https://biletavto.ru/insurance/" target="_blank">Поиск полисов</a></li>
+                        <li><a href="https://biletavto.ru/agents/" target="_blank">Партнерам</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2">
                     <p>Документы</p>
                     <ul>
-                        <li><a href="/">Договор оферты</a></li>
-                        <li><a href="/">Политика конфиденциальности</a></li>
+                        <li><a href="https://biletavto.ru/soglashenie-publichnoj-ofertyi/" target="_blank">Договор оферты</a></li>
+                        <li><a href="https://biletavto.ru/policy/" target="_blank">Политика конфиденциальности</a></li>
                     </ul>
                 </div>
                 <div class="col-md-5 offset-md-1">
                     <p>Мы в соцсетях</p>
                     <div class="social">
-                        <a href="/" target="_blank"><img src="/img/social/vk.svg"></a>
-                        <a href="/" target="_blank"><img src="/img/social/instagram.svg"></a>
-                        <a href="/" target="_blank"><img src="/img/social/fb.svg"></a>
-                        <a href="/" target="_blank"><img src="/img/social/ok.svg"></a>
-                        <a href="/" target="_blank"><img src="/img/social/telegram.svg"></a>
+                        <a href="https://vk.com/biletavto" target="_blank"><img src="/img/social/vk.svg"></a>
+                        <a href="https://www.instagram.com/biletavto/" target="_blank"><img src="/img/social/instagram.svg"></a>
+                        <a href="https://www.facebook.com/biletavto" target="_blank"><img src="/img/social/fb.svg"></a>
+                        <a href="https://ok.ru/biletavto" target="_blank"><img src="/img/social/ok.svg"></a>
+                        <a href="http://telegram.me/biletavtobot" target="_blank"><img src="/img/social/telegram.svg"></a>
                     </div>
                     </ul>
                     <p>Контакты</p>
