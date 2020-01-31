@@ -1,30 +1,30 @@
-<div class="col-lg-12 shadow-block">
-    <div class="row">
-        <div class="col-md-5">
-            <p>Время и место отправления</p>
-        </div>
-        <div class="col-md-5">
-            <p>Время и место прибытия</p>
-        </div>
-    </div>
-</div>
 <?php foreach ($ridelist as $key => $ride): ?>
     <div class="col-lg-12 shadow-block ridelist">
         <div class="row">
-            <div class="col-md-1">
-                <h2><?= $ride->departureTime ?></h2>
+            <div class="col-md-5">
+                <p class="search-date">Время и место отправления</p>
+                <div class="row">
+                    <div class="col-md-2">
+                        <h2><?= $ride->departureTime ?></h2>
+                    </div>
+                    <div class="col-md-8 ridelist-station">
+                        <p><b><?= $ride->departureCity ?></b></p>
+                        <p><?= $ride->departureStation ?></p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <p><b><?= $ride->departureCity ?></b></p>
-                <p><?= $ride->departureStation ?></p>
-            </div>
-            <div class="col-md-1">
-                <h2><?= $ride->arrivalTime ?></h2>
-            </div>
-            <div class="col-md-4">
-                <p><b><?= $ride->arrivalCity ?></b></p>
-                <p><?= $ride->arrivalStation ?></p>
-            </div>
+            <div class="col-md-5">
+                <p class="search-date">Время и место прибытия</p>
+                <div class="row">
+                    <div class="col-md-2">
+                        <h2><?= $ride->arrivalTime ?></h2>
+                    </div>
+                    <div class="col-md-8 ridelist-station">
+                        <p><b><?= $ride->arrivalCity ?></b></p>
+                        <p><?= $ride->arrivalStation ?></p>
+                    </div>
+                </div>
+            </div>  
             <div class="col-md-2">
                 <p><a class="btn btn-warning btn-block" href="<?= $ride->url ?>">Купить за <?= $ride->price ?> &#8381;</a></p>
                 <p><a class="btn btn-outline-secondary btn-block" data-toggle="collapse" data-target="#more-info-<?= $key ?>">Подробнее</a></p>

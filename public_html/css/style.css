@@ -184,6 +184,9 @@ body{
 	padding-left: 0px;
 	padding-right: 0px;
 }
+.ridelist-station {
+	margin-left: 15px;
+}
 .rideblock p{
 	padding-top: 0px;
 	padding-bottom: 0px;
