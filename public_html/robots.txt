@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://biletavto.ru/sitemap.xml
+Sitemap: https://search.biletavto.ru/sitemap.xml
