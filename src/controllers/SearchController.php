@@ -94,7 +94,7 @@ class SearchController extends Controller
      *
      * @return redirect
      */
-    public function actionSearch($departure, $arrival, $date)
+    public function actionSearch($departure, $arrival, $date = null)
     {
         $request = Yii::$app->request->get();
 
