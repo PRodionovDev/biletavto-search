@@ -5,8 +5,6 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\jui\DatePicker;
-
-$this->title = 'Билетавто';
 ?>
 
 <div class="ride-search">

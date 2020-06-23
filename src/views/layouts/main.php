@@ -16,12 +16,12 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><?= Html::encode($this->title) ?></title>
     <meta name="description" content="Приобретайте билеты на нашем сайте онлайн. Точное расписание, цены как на вокзале. Мы принимаем банковские карты, электронные деньги и наличные. Продажа билетов за 90 дней до отправления автобуса">
     <link rel="canonical" href="/search?departure=<?= Yii::$app->request->get('departure'); ?>&arrival=<?= Yii::$app->request->get('arrival'); ?>" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <script src="/js/jquery-3.3.1.min.js"></script>
     <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
 <body>

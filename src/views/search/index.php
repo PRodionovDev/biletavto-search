@@ -5,7 +5,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = 'Билетавто';
+$this->title = 'Билеты на автобус: расписание, цены';
 ?>
 <div class="site-index">
 
