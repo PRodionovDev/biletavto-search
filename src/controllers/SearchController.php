@@ -69,8 +69,8 @@ class SearchController extends Controller
         $request = Yii::$app->request->get();
 
         if ($model->load($request)) {
-            $departure = $request['departure'];
-            $arrival = $request['arrival'];
+            $departure = trim($request['departure']);
+            $arrival = trim($request['arrival']);
             $date = $request['date'];
             $token = new Token();
             $token = $token->getToken();
@@ -98,8 +98,8 @@ class SearchController extends Controller
     {
         $request = Yii::$app->request->get();
 
-        $departure = (empty($request['departure'])) ? '' : $request['departure'];
-        $arrival = (empty($request['arrival'])) ? '' : $request['arrival'];
+        $departure = (empty($request['departure'])) ? '' : trim($request['departure']);
+        $arrival = (empty($request['arrival'])) ? '' : trim($request['arrival']);
         $date = (empty($request['date'])) ? date('d.m.Y') : date('d.m.Y', strtotime($request['date']));
 
         return $this->redirect(['search/index', 'departure' => $departure, 'arrival' => $arrival, 'date' => $date]);
