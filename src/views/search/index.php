@@ -5,7 +5,13 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = 'Билеты на автобус: расписание, цены';
+if (empty($ridelist)) {
+    $this->title = 'Билеты на автобус: расписание, цены';
+    $this->registerMetaTag(['name' => 'description', 'content' => 'Приобретайте билеты на нашем сайте онлайн. Точное расписание, цены как на вокзале. Мы принимаем банковские карты, электронные деньги и наличные. Продажа билетов за 90 дней до отправления автобуса']);
+} else {
+    $this->title = 'Расписание и билеты на автобус '. $model["departure"] . ' - ' . $model["arrival"] . ' ' . date("Y") . ' / Купить по цене от ' . $ridelist[0]->price . ' руб., заказать онлайн на портале biletavto.ru';
+    $this->registerMetaTag(['name' => 'description', 'content' => 'Самый ранний выезд автобуса: ' . $ridelist[0]->departureTime]);
+}
 ?>
 <div class="site-index">
 
@@ -16,7 +22,7 @@ $this->title = 'Билеты на автобус: расписание, цены
     <div class="container">
         <?php if (!empty($ridelist)) : ?>
             <div class="jumbotron">
-               <h3>Маршрут из г. <?= $model["departure"] ?> в г. <?= $model["arrival"] ?> на <?= $model["date"] ?></h3>
+               <h1 class="h3 text-center">Расписание и билеты на автобус <?= $model["departure"] ?> — <?= $model["arrival"] ?>  <?= date("Y", strtotime($model["date"])) ?> г.</h1>
                <div id="count-visor" class="count-visor"></div>
             </div>
             <?php if (!empty($notification)):?>
