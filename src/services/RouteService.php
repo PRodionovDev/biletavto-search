@@ -42,6 +42,10 @@ class RouteService
 
         $response = array_merge($rideListBiletavto, $rideListAvtovokzalOnline, $rideListUnitiki);
         $response = $url->generate($response);
+
+        if (empty($response)) {
+        	Yii::$app->response->statusCode = 404;
+        }
         
         return $response;
 	}
