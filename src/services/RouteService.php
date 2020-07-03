@@ -124,6 +124,7 @@ class RouteService
 	 */
 	private function getRequest($headers, $url, $params)
 	{
+	    $params = str_replace(' ', '+', $params);
 	 	$ch = curl_init($url . '?' . $params);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
