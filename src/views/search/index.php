@@ -25,6 +25,7 @@ if (empty($ridelist)) {
                <h1 class="h3 text-center">Расписание и билеты на автобус <?= $model["departure"] ?> — <?= $model["arrival"] ?>  <?= date("Y", strtotime($model["date"])) ?> г.</h1>
                <div id="count-visor" class="count-visor"></div>
             </div>
+            <p class="text-right search-date">Выбрано: <b><?php echo $model["date"] ?></b></p>
             <?php if (!empty($notification)):?>
                <div class="alert alert-success"><b>Внимание! </b><?= $notification ?></div>
             <?php endif; ?>

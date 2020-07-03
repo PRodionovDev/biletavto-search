@@ -71,7 +71,8 @@ class SearchController extends Controller
         if ($model->load($request)) {
             $departure = trim($request['departure']);
             $arrival = trim($request['arrival']);
-            $date = $request['date'];
+            $date = (empty($request['date'])) ? date('d.m.Y') : date('d.m.Y', strtotime($request['date']));
+            $model->date = $date;
             $token = new Token();
             $token = $token->getToken();
 

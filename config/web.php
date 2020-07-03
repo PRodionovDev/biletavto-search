@@ -115,6 +115,7 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'suffix' => '/',
             'rules' => [
                 '<departure>/<arrival>/<date>' => 'search/index',
                 '<departure>/<arrival>' => 'search/index',
