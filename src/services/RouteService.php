@@ -25,6 +25,14 @@ class RouteService
 	 */
 	public function getRoute($departure, $arrival, $date, $token)
 	{
+		$dateNow = date('d.m.Y');
+		$dateNowTimestamp = strtotime($dateNow);
+		$dateTimestamp = strtotime($date);
+
+		if ($dateTimestamp < $dateNowTimestamp) {
+			Yii::$app->getResponse()->redirect('/' . $departure . '/' . $arrival . '/' . $dateNow . '/', 301)->send();
+		}
+
 		$rideListBiletavto = $this->getBiletavtoRoute($departure, $arrival, $date, $token);
 
         if (!empty($rideListBiletavto->status)) {
