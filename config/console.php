@@ -1,49 +1,42 @@
 <?php
 
 /**
- * Connect database's configuration
- *
+ * Файл конфигурации консольной части Yii-приложения Biletavto-search.
+ * Консольная часть сервиса используется для миграций в базу данных
+ * проекта.
  */
-$db = require(__DIR__ . '/db.php');
-
 return [
 
     /**
-     * An ID that uniquely identifies this module among other modules
-     *
+     * Уникальный идентификатор консольного приложения.
      */
     'id' => 'biletavto-search-console',
 
     /**
-     * The root directory of the module
-     *
-     */
-    'basePath' => dirname(__DIR__),
-
-    /**
-     * List of path aliases to be defined
-     *
+     * Список путей допустимых алиасов.
      */
     'aliases' => [
         '@application' => dirname(__DIR__) . '/src'
     ],
 
     /**
-     * The namespace that controller classes are in. This namespace will be used to load controller classes by prepending it to the controller class name
-     *
+     * Базовая директория проекта.
+     */
+    'basePath' => dirname(__DIR__),
+
+    /**
+     * Пространство имен, в котором находятся классы контроллера.
      */
     'controllerNamespace' => 'app\console',
 
     /**
-     * The list of the component definitions or the loaded component instances (ID => definition or instance)
-     *
+     * Список компонентов, необходимых для работы приложения.
      */
     'components' => [
 
         /**
-         * Database component
-         *
+         * Подключение конфигурации базы данных.
          */
-        'db' => $db
+        'db' => require(__DIR__ . '/db.php')
     ]
 ];

@@ -5,26 +5,25 @@ namespace application\assets;
 use yii\web\AssetBundle;
 
 /**
- * Main application asset bundle.
+ * Asset bundle приложения.
  *
+ * Используется для подключения стилей и скриптов,
+ * выполняемых на клиенте.
  */
 class AppAsset extends AssetBundle
 {
     /**
-     * Base Path
-     *
+     * Путь к asset'ам.
      */
     public $basePath = '@webroot';
 
     /**
-     * Base Url
-     *
+     * Url к asset'ам.
      */
     public $baseUrl = '@web';
 
     /**
-     * Styles
-     *
+     * CSS стили.
      */
     public $css = [
         'css/glyphicon.css',
@@ -33,8 +32,7 @@ class AppAsset extends AssetBundle
     ];
 
     /**
-     * Scripts
-     *
+     * Скрипты Javascript.
      */
     public $js = [
         'js/bootstrap.min.js',
@@ -44,8 +42,7 @@ class AppAsset extends AssetBundle
     ];
 
     /**
-     * Depends
-     *
+     * Зависимости.
      */
     public $depends = [
         'yii\web\YiiAsset',

@@ -7,133 +7,125 @@ use application\components\Token;
 use application\components\UrlGenerator;
 
 /**
- * RouteService for Search.Biletavto project
+ * Сервис приложения. Выполняет функции
+ * получения рейсов у API-сервиса и
+ * форматирования общего массива маршрутов.
  *
- * This class is needed for interacting with routes
+ * Также сервис отвечает за редиректы.
  */
 class RouteService
 {
-	/**
-	 * Method to get a list of routes from the departure city to the arrival city on a specific date
-	 *
-	 * @param string $departure
-	 * @param string $arrival
-	 * @param string $date
-	 * @param string $token
-	 *
-	 * @return array
-	 */
-	public function getRoute($departure, $arrival, $date, $token)
-	{
-		$dateNow = date('d.m.Y');
-		$dateNowTimestamp = strtotime($dateNow);
-		$dateTimestamp = strtotime($date);
+    /**
+     * Метод получения массива рейсов или редиректов с
+     * кодами ошибок.
+     *
+     * @param string $departure город отправления
+     * @param string $arrival   город прибытия
+     * @param string $date      дата отправления
+     * @param string $token     токен для авторизации
+     *
+     * @return array
+     */
+    public function getRoute($departure, $arrival, $date, $token)
+    {
+        /**
+         * Форматируем дату, а также получаем текущую дату.
+         * Данный код необходим для 301 редиректа в случае,
+         * если дата запроса ранее, чем "сегодня".
+         */
+        $dateNow = date('d.m.Y');
+        $dateNowTimestamp = strtotime($dateNow);
+        $dateTimestamp = strtotime($date);
 
-		if ($dateTimestamp < $dateNowTimestamp) {
-			Yii::$app->getResponse()->redirect('/' . $departure . '/' . $arrival . '/' . $dateNow . '/', 301)->send();
-		}
+        if ($dateTimestamp < $dateNowTimestamp) {
+            Yii::$app->getResponse()->redirect('/' . $departure . '/' . $arrival . '/' . $dateNow . '/', 301)->send();
+        }
 
-		$rideListBiletavto = $this->getBiletavtoRoute($departure, $arrival, $date, $token);
+        /**
+         * Получаем массив маршрутов.
+         */
+        $ridelist = $this->getRide($departure, $arrival, $date, $token);
 
-        if (!empty($rideListBiletavto->status)) {
-			if ($rideListBiletavto->status == 401) {
-				$token = new Token();
-				$token = $token->resetToken();
-				$rideListBiletavto = $this->getBiletavtoRoute($departure, $arrival, $date, $token);
-			}
-		}
+        /**
+         * Если при запросе к API-сервису приходит 401 ошибка,
+         * происходит сброс токена и поиск выполняется снова.
+         */
+        if ($ridelist == 401) {
+            $token = new Token();
+            $token = $token->resetToken();
+            $ridelist = $this->getRide($departure, $arrival, $date, $token);
+        }
 
-        $rideListAvtovokzalOnline = $this->getAvtovokzalOnlineRoute($departure, $arrival, $date, $token);
-        $rideListUnitiki = $this->getUnitikiRoute($departure, $arrival, $date, $token);
-
+        /**
+         * Формируем URL на страницу покупки для рейсов.
+         */
         $url = new UrlGenerator();
+        $response = $url->generate($ridelist);
 
-        $response = array_merge($rideListBiletavto, $rideListAvtovokzalOnline, $rideListUnitiki);
-        $response = $url->generate($response);
-
+        /**
+         * Если рейсов не обнаружено, возвращаем ошибку 404.
+         * Действие необходимо для того, чтобы поисковые роботы
+         * не индексировали пустые страницы.
+         */
         if (empty($response)) {
-        	Yii::$app->response->statusCode = 404;
+            Yii::$app->response->statusCode = 404;
         }
         
         return $response;
-	}
+    }
 
-	/**
-	 * Private method to get a list of Biletavto's routes
-	 *
-	 * @param string $departure
-	 * @param string $arrival
-	 * @param string $date
-	 * @param string $token
-	 *
-	 * @return array
-	 */
-	private function getBiletavtoRoute($departure, $arrival, $date, $token)
-	{
-		$headers = array("Authorization: Bearer " . $token, "Content-Type: application/json");
-		$date = date('Y-m-d', strtotime($date));
-		$params = 'departure=' . $departure . '&arrival=' . $arrival . '&departureDate=' . $date;
-		$url = Yii::$app->params['biletavto_url'];
-        $response = $this->getRequest($headers, $url, $params);
+    /**
+     * Метод получения массива рейсов.
+     *
+     * @param string $departure город отправления
+     * @param string $arrival   город прибытия
+     * @param string $date      дата отправления
+     * @param string $token     токен для авторизации
+     *
+     * @return array
+     */
+    private function getRide($departure, $arrival, $date, $token)
+    {
+        $biletavto = $this->getRequest($departure, $arrival, $date, $token, Yii::$app->params['biletavto_url']);
+        $avtovokzalOnline = $this->getRequest($departure, $arrival, $date, $token, Yii::$app->params['avtovokzalonline_url']);
+        $unitiki = $this->getRequest($departure, $arrival, $date, $token, Yii::$app->params['unitiki_url']);
 
-        return $response;
-	}
+        /**
+         * Проверка ответа от API-сервиса. Свойство статус возвращается
+         * при отсутствии или неверном токене авторизации.
+         */
+        if (!empty($biletavto->status) || !empty($avtovokzalOnline->status) || !empty($unitiki->status)) {
+            return 401;
+        } else {
+            $response = array_merge($biletavto, $avtovokzalOnline->data, $unitiki);
+            return $response;
+        }
+    }
 
-	/**
-	 * Private method to get a list of AvtovokzalOnline's routes
-	 *
-	 * @param string $departure
-	 * @param string $arrival
-	 * @param string $date
-	 * @param string $token
-	 *
-	 * @return array
-	 */
-	private function getAvtovokzalOnlineRoute($departure, $arrival, $date, $token)
-	{
-		$headers = array("Authorization: Bearer " . $token, "Content-Type: application/json");
-		$date = date('Y-m-d', strtotime($date));
-		$params = 'departure=' . $departure . '&arrival=' . $arrival . '&departureDate=' . $date;
-		$url = Yii::$app->params['avtovokzalonline_url'];
-        $response = $this->getRequest($headers, $url, $params);
+    /**
+     * Отправка HTTP запроса
+     *
+     * @param string $departure город отправления
+     * @param string $arrival   город прибытия
+     * @param string $date      дата отправления
+     * @param string $token     токен авторизации
+     * @param string $url       URL метода API-сервиса
+     *
+     * @return array
+     */
+    private function getRequest($departure, $arrival, $date, $token, $url)
+    {
+        $headers = array("Authorization: Bearer " . $token, "Content-Type: application/json");
+        $date = date('Y-m-d', strtotime($date));
+        $params = 'departure=' . $departure . '&arrival=' . $arrival . '&departureDate=' . $date;
 
-        return $response->data;
-	}
+        /**
+         * Заменяем символ пробела на "+"
+         * для корректного парсинга запроса.
+         */
+        $params = str_replace(' ', '+', $params);
 
-	/**
-	 * Private method to get a list of Unitiki's routes
-	 *
-	 * @param string $departure
-	 * @param string $arrival
-	 * @param string $date
-	 * @param string $token
-	 *
-	 * @return array
-	 */
-	private function getUnitikiRoute($departure, $arrival, $date, $token)
-	{
-		$headers = array("Authorization: Bearer " . $token, "Content-Type: application/json");
-		$date = date('Y-m-d', strtotime($date));
-		$params = 'departure=' . $departure . '&arrival=' . $arrival . '&departureDate=' . $date;
-		$url = Yii::$app->params['unitiki_url'];
-        $response = $this->getRequest($headers, $url, $params);
-
-        return $response;
-	}
-
-	/**
-	 * Sending a HTTP request
-	 *
-	 * @param array $headers
-	 * @param string $url
-	 * @param string $params
-	 *
-	 * @return array
-	 */
-	private function getRequest($headers, $url, $params)
-	{
-	    $params = str_replace(' ', '+', $params);
-	 	$ch = curl_init($url . '?' . $params);
+        $ch = curl_init($url . '?' . $params);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
@@ -141,5 +133,5 @@ class RouteService
         $response = json_decode($response);
 
         return $response;
-	}
+    }
 }

@@ -5,31 +5,27 @@ namespace application\models\forms;
 use yii\base\Model;
 
 /**
- * RideSearchForm for Search.Biletavto project
- *
+ * Форма поиска рейсов.
  */
-class RideSearchForm extends Model
+class SearchForm extends Model
 {
     /**
-     * Departure City
-     *
+     * Город отправления.
      */
     public $departure;
 
     /**
-     * Arrival City
-     *
+     * Город прибытия.
      */
     public $arrival;
 
     /**
-     * Departure date
-     *
+     * Дата отправления.
      */
     public $date;
 
     /**
-     * validation rules
+     * Правила валидации формы.
      *
      * @return array
      */
@@ -42,7 +38,7 @@ class RideSearchForm extends Model
     }
 
     /**
-     * attribute labels
+     * Именования аттрибутов.
      *
      * @return array
      */
@@ -51,13 +47,12 @@ class RideSearchForm extends Model
         return [
             'departure' => 'Город отправления',
             'arrival' => 'Город прибытия',
-            'date' => 'Дата',
+            'date' => 'Дата'
         ];
     }
 
     /**
-     * Remove model name from parameters
-     *
+     * Удаление имени формы из параметров.
      */
     public function formName()
     {

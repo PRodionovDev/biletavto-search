@@ -5,42 +5,54 @@ namespace application\controllers;
 use Yii;
 use yii\web\Controller;
 use application\components\Token;
-use application\models\forms\RideSearchForm;
+use application\models\forms\SearchForm;
 use application\repositories\RouteRepository;
 use application\services\RouteService;
 
 /**
- * Search base controller
- *
+ * Базовый контроллер приложения.
  */
 class SearchController extends Controller
 {
     /**
-     * Protected RouteRepository variable
-     *
+     * Глобальная protected-переменная,
+     * используемая для инициализации
+     * репозитория routeRepository.
      */
     protected $routeRepository;
 
     /**
-     * Protected RouteService variable
-     *
+     * Глобальная protected-переменная,
+     * используемая для инициализации
+     * сервиса routeService.
      */
     protected $routeService;
 
     /**
-     * Connect RouteRepository and RouteService in controller
-     *
+     * Конструктор, инициализирующий
+     * сервисы и репозитории.
      */ 
     public function __construct($id, $module, RouteRepository $routeRepository, RouteService $routeService, $config = [])
     {
         $this->routeRepository = $routeRepository;
         $this->routeService = $routeService;
+
         parent::__construct($id, $module, $config);
     }
 
     /**
-     * {@inheritdoc}
+     * Поведения - это экземпляры класса yii\base\Behavior или класса,
+     * унаследованного от него. Поведения, также известные как примеси,
+     * позволяют расширять функциональность существующих компонентов без
+     * необходимости изменения дерева наследования.
      *
+     * Кэширование страниц приложения, используемое
+     * для ускорения загрузки повторно загружаемых
+     * страниц.
+     *
+     * 'only' - кэшируемые страницы.
+     * 'duration' - время кэширования в секундах.
+     * 'variations' - кэшируемые параметры.
      */
     public function behaviors()
     {
@@ -58,40 +70,63 @@ class SearchController extends Controller
         ];
     }
 
-	/**
-	 * Display main-page
-	 *
-	 * @return string
-	 */
+    /**
+     * Отображение главной страницы приложения.
+     *
+     * @return string
+     */
     public function actionIndex()
     {
-    	$model = new RideSearchForm();
+        $model = new SearchForm();
         $request = Yii::$app->request->get();
 
         if ($model->load($request)) {
+
+            /**
+             * Получаем параметры для поиска. Удаляем лишние пробелы,
+             * если они есть. При отсутствии явно указанной даты -
+             * выбирается текущий день.
+             *
+             * Для вывода даты в форму поиска, присваиваем итоговую дату
+             * к свойству модели.
+             */
             $departure = trim($request['departure']);
             $arrival = trim($request['arrival']);
             $date = (empty($request['date'])) ? date('d.m.Y') : date('d.m.Y', strtotime($request['date']));
             $model->date = $date;
+
+            /**
+             * Получаем токен для связи с API-сервисом.
+             */
             $token = new Token();
             $token = $token->getToken();
 
             Yii::info($departure . ', ' . $arrival . ', ' . $date, 'search');
 
+            /**
+             * Получение данных, где:
+             *
+             * ridelist - список рейсов, доступных для покупки.
+             * routelist - список маршрутов, который выходит внизу
+             * страницы в зависимости от города отправления.
+             * notification - уведомления для рейсов
+             * (например: "Рейс отправляется по наполнению").
+             */
             $ridelist = $this->routeService->getRoute($departure, $arrival, $date, $token);
             $routelist = $this->routeRepository->getAllStationRoutes($departure);
             $notification = $this->routeRepository->getNotification($departure, $arrival);
         }
-    	
+        
         return $this->render('index', compact('model', 'ridelist', 'notification', 'routelist'));
     }
 
     /**
-     * Redirect to index-page after submitting the form, to format prettyUrl 
+     * Метод, необходимый для редиректа на
+     * главную страницу, приведя URL к ЧПУ. 
      *
-     * @param string $departure
-     * @param string $arrival
-     * @param string $date
+     * @param string $departure город отправления
+     * @param string $arrival   город прибытия
+     * @param string $date      дата отправления
      *
      * @return redirect
      */

@@ -2,15 +2,13 @@
 <?php
 
 /**
- * Connect autoload and core of Yii2
- *
+ * Подключение autoload и ядра фреймворка Yii2.
  */
 require(__DIR__ . '/vendor/autoload.php');
 require(__DIR__ . '/vendor/yiisoft/yii2/Yii.php');
 
 /**
- * Connect configuration settings
- *
+ * Подключение конфигурации консольного приложения.
  */
 $config = require(__DIR__ . '/config/console.php');
 

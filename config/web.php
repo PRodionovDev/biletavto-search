@@ -1,29 +1,18 @@
 <?php
 
 /**
- * Connect database's configuration
- *
+ * Файл конфигурации web части Yii-приложения Biletavto-search.
  */
-$db = require(__DIR__ . '/db.php');
-
-/**
- * Connect parameters
- *
- */
-$params = require(__DIR__ . '/params.php');
-
 return [
 
-	/**
-	 * An ID that uniquely identifies this module among other modules
-	 *
-	 */
+    /**
+     * Уникальный идентификатор консольного приложения.
+     */
     'id' => 'biletavto-search',
 
     /**
-	 * List of path aliases to be defined
-	 *
-	 */
+     * Список путей допустимых аллиасов
+     */
     'aliases' => [
         '@application' => dirname(__DIR__) . '/src',
         '@bower' => '@vendor/bower-asset',
@@ -31,91 +20,138 @@ return [
     ],
 
     /**
-	 * The root directory of the module
-	 *
-	 */
+     * Базовая директория проекта.
+     */
     'basePath' => dirname(__DIR__),
 
     /**
-     * Components to be called during application bootstrap stage
-     *
+     * Компоненты, вызываемые на этапе
+     * начальной загрузки приложения.
      */
     'bootstrap' => [
 
         /**
-         * added Logger
-         *
+         * Подключение логирования.
          */
         'log'
     ],
 
     /**
-	 * The namespace that controller classes are in. This namespace will be used to load controller classes by prepending it to the controller class name
-	 *
-	 */
+     * Пространство имен, в котором находятся классы контроллера.
+     */
     'controllerNamespace' => 'application\controllers',
 
     /**
-	 * The default route of this module
-	 *
-	 */
+     * Имя базового контроллера приложения.
+     */
     'defaultRoute' => 'search',
 
     /**
-	 * The list of the component definitions or the loaded component instances (ID => definition or instance)
-	 *
-	 */
+     * Список компонентов, необходимых для работы приложения.
+     */
     'components' => [
 
         /**
-         * Cache component
-         *
+         * Компонент кэширования.
          */
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
 
         /**
-         * Database component
-         *
+         * Подключение конфигурации базы данных.
          */
-        'db' => $db,
+        'db' => require(__DIR__ . '/db.php'),
 
         /**
-         * Logger component
-         *
+         * Настройка компонента логирования.
          */
         'log' => [
+
+            /**
+             * Конфигурация сохранения стеков вызывов в лог.
+             *
+             * "YII_DEBUG ? 3 : 0" означает, что при включенном
+             * режиме отладки, каждое сообщение лога будет содержать
+             * до трех уровней стека вызовов.
+             */
             'traceLevel' => YII_DEBUG ? 3 : 0,
+
+            /**
+             * Количество сообщений, после которых идет передача
+             * в лог.
+             */
             'flushInterval' => 10,
+
+            /**
+             * Цели логов.
+             */
             'targets' => [
                 [
+                    /**
+                     * Сохранение сообщений логов в файл.
+                     */
                     'class' => 'yii\log\FileTarget',
+
+                    /**
+                     * Уровни логов текущей цели.
+                     */
                     'levels' => ['info', 'error', 'warning'],
+
+                    /**
+                     * Категории логов текущей цели.
+                     */
                     'categories' => ['search'],
+
+                    /**
+                     * Количество файлов с логами.
+                     */
                     'maxLogFiles' => 20,
+
+                    /**
+                     * Отключение вывода информации в лог о типе запроса
+                     * ($_GET, $_POST, $_SERVER и т.д.).
+                     */
                     'logVars' => [],
+
+                    /**
+                     * Количество сообщений для выгрузки логов.
+                     */
                     'exportInterval' => 10
                 ]
             ]
         ],
 
-    	/**
-    	 * Request
-    	 *
-    	 */
-    	'request' => [
+        /**
+         * Ключ валидации Cookie.
+         */
+        'request' => [
             'cookieValidationKey' => 'n_b41gjXn9yfZLmWGyjs9l8UUnHuh5TX',
         ],
 
         /**
-         * Url-manager component
-         *
+         * Настройка компонента URL.
          */
         'urlManager' => [
+
+            /**
+             * Подключение человеко-понятных URL (ЧПУ).
+             */
             'enablePrettyUrl' => true,
+
+            /**
+             * Отключение расширения скриптов в адресной строке.
+             */
             'showScriptName' => false,
+
+            /**
+             * Добавление слэша в конце URL.
+             */
             'suffix' => '/',
+
+            /**
+             * Правила разбора URL.
+             */
             'rules' => [
                 '<departure>/<arrival>/<date>' => 'search/index',
                 '<departure>/<arrival>' => 'search/index',
@@ -123,11 +159,10 @@ return [
             ]
         ],
 
-    	/**
-    	 * View's component
-    	 *
-    	 */
-    	'view' => [
+        /**
+         * Настройка расположения View приложения.
+         */
+        'view' => [
             'theme' => [
                 'pathMap' => [
                     '@app/views' => '@application/views'
@@ -137,8 +172,7 @@ return [
     ],
 
     /**
-     * Parameters
-     *
+     * Массив параметров приложения.
      */
-    'params' => $params
+    'params' => require(__DIR__ . '/params.php')
 ];

@@ -31,12 +31,12 @@ use yii\jui\DatePicker;
                 </div>
             </div>
             <div class="col-md-3 padding-side-0 padding-side-mobile-15">
-            	<?= $form->field($model, 'date')->widget(DatePicker::className(),[
+                <?= $form->field($model, 'date')->widget(DatePicker::className(),[
                         'id' => 'date',
-            			'name' => 'date',
+                        'name' => 'date',
                         'language' => 'ru',
                         'dateFormat' => 'dd.MM.yyyy',
-						'options' => [
+                        'options' => [
                             'placeholder' => 'Выбрать дату...',
                             'class'=> 'form-control',
                             'autocomplete'=>'off'
@@ -54,7 +54,7 @@ use yii\jui\DatePicker;
                     <?= Html::submitButton('Найти маршрут <span class="glyphicon glyphicon-search" aria-hidden="true"></span>', ['class' => 'btn btn-warning btn-block']) ?>
                     <?= Html::a('Обратные рейсы',["search/index", 'departure' => $model->arrival, 'arrival' => $model->departure ,'date'=> $model->date], ['class' => 'search-button no_mobile']) ?>
                 </div>
-            </div>             
+            </div>
         </div>
     </div>
 

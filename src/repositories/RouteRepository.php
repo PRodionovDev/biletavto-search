@@ -2,24 +2,28 @@
 
 namespace application\repositories;
 
+use application\models\Notification;
+
 /**
- * RouteRepository for Search.Biletavto project
- *
- * This class is needed for interacting with database
+ * Репозиторий приложения. Выполняет связующую
+ * функцию между приложением и базой данных,
+ * для таблиц и связей, у которых отсутствует
+ * AR-модель.
  */
 class RouteRepository
 {
-	/**
-	 * Method of obtaining a list of possible routes from the departure city
-	 * created_by == [2065, 1798, 1811, 11937] - system routes that are not searchable
-	 *
-	 * @param string $departure
-	 *
-	 * @return array
-	 */
-	public function getAllStationRoutes($departure)
-	{
-		$stations = (new \yii\db\Query())
+    /**
+     * Метод получения всех маршрутов из выбраного города отправления.
+     * created_by равный: 2065, 1798, 1811, 11937 - системные маршруты,
+     * которые не должны быть доступны для поиска.
+     *
+     * @param string $departure город отправления
+     *
+     * @return array
+     */
+    public function getAllStationRoutes($departure)
+    {
+        $stations = (new \yii\db\Query())
             ->select([
                 'station_start_name as start',
                 'station_end_name as end'])
@@ -31,24 +35,28 @@ class RouteRepository
             ->all();
 
         return $stations; 
-	}
+    }
 
-	/**
-	 * Method of get route's notification
-	 *
-	 * @param string $departure
-	 * @param string $arrival
-	 *
-	 * @return string
-	 */
-	public function getNotification($departure, $arrival)
-	{
-		$response = (new \yii\db\Query())
-            ->select('notification')
-            ->from('route_notification')
-            ->where(['city_start' => $departure, 'city_end' => $arrival, 'active' => '1'])
+    /**
+     * Метод получения уведомления маршрута.
+     *
+     * @param string $departure город отправления
+     * @param string $arrival   город прибытия
+     *
+     * @return string
+     */
+    public function getNotification($departure, $arrival)
+    {
+        $response = Notification::find()
+            ->where([
+                'city_start' => $departure,
+                'city_end' => $arrival,
+                'active' => '1'
+            ])
             ->one();
 
-        return $response["notification"];
-	}
+        if (!empty($response)) {
+            return $response->notification;
+        }
+    }
 }

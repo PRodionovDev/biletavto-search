@@ -30,32 +30,27 @@
 
 ```php
 /**
- * The host for establishing DB connection
- *
+ * Адрес сервера, на котором расположена база данных.
  */
 define('HOST', '127.0.0.1');
 
 /**
- * The tablename for establishing DB connection
- *
+ * Имя базы данных, которая используется в приложении.
  */
 define('DATABASE', 'db_biletavto_api');
 
 /**
- * The username for establishing DB connection
- *
+ * Имя пользователя, имеющего доступ к базе данных.
  */
 define('USERNAME', 'root');
 
 /**
- * The password for establishing DB connection
- *
+ * Пароль пользователя для доступа к базе данных.
  */
 define('PASSWORD', '');
 
 /**
- * The charset used for database connection
- *
+ * Кодировка, используемая в базе данных.
  */
 define('CHARSET', 'utf8');
 ```
@@ -68,9 +63,6 @@ return [
     'biletavto_url' => 'api_url/api_version/route/search',
     'unitiki_url' => 'api_url/api_version/route/search',
     'auth_url' => 'api_url/token',
-    'biletavto_agent_id' => 0,
-    'avtovokzal_online_agent_id' => 1,
-    'unitiki_agent_id' => 2,
     'username' => '',
     'password' => ''
 ];
@@ -102,6 +94,9 @@ defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'dev');
 ```
 
+8. Переходим в каталог public_html и настраиваем .htaccess, раскомментировав строки нужного режима и закомментировав строки не нужного.
+
+
 СТРУКТУРА ПРИЛОЖЕНИЯ
 -------------------
 
@@ -116,7 +111,6 @@ defined('YII_ENV') or define('YII_ENV', 'dev');
       --src/                      Каталог API-приложения
         --assets/                 Пакеты ресурсов
         --components/             Компоненты
-          --Token.php             Авторизация по токену
         --controllers/            Контроллеры приложения
         --models/                 Модели приложения
           --forms/                Формы

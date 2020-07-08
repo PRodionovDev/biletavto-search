@@ -1,17 +1,36 @@
-RewriteEngine On RewriteBase /
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} !(.xml)
-RewriteCond %{REQUEST_URI} !(.*)/$
-RewriteRule ^(.*)$ https://search.biletavto.ru/$1/ [L,R=301]
+##############################################
+##                                           #
+##           ТЕСТОВАЯ КОНФИГУРАЦИЯ           #
+##                                           #
+##############################################
 
 RewriteEngine On RewriteBase /
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
 RewriteRule . index.php
 
-RewriteEngine On
-RewriteCond %{SERVER_PORT} !^443$
-RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+##############################################
+##                                           #
+##            БОЕВАЯ КОНФИГУРАЦИЯ            #
+##                                           #
+##############################################
+
+#RewriteEngine On RewriteBase /
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_URI} !(.xml)
+#RewriteCond %{REQUEST_URI} !(.*)/$
+#RewriteRule ^(.*)$ https://search.biletavto.ru/$1/ [L,R=301]
+
+#RewriteEngine On RewriteBase /
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+
+#RewriteRule . index.php
+
+#RewriteEngine On
+#RewriteCond %{SERVER_PORT} !^443$
+#RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]

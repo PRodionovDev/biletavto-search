@@ -1,32 +1,38 @@
 <?php
 
 /**
- * The host for establishing DB connection
+ * Файл примера конфигурации базы данных Yii-приложения Biletavto-search.
  *
+ * Данный файл не используется системой напрямую. Для внесения параметров
+ * при развертке проекта, файл необходимо скопировать и переименовать как:
+ * "db.php".
+ *
+ * Текущей же файл используется в качестве примера организации конфигурации,
+ * а также хранится в git-репозитории.
+ */
+
+/**
+ * Адрес сервера, на котором расположена база данных.
  */
 define('HOST', '127.0.0.1');
 
 /**
- * The tablename for establishing DB connection
- *
+ * Имя базы данных, которая используется в приложении.
  */
 define('DATABASE', 'db_biletavto_api');
 
 /**
- * The username for establishing DB connection
- *
+ * Имя пользователя, имеющего доступ к базе данных.
  */
 define('USERNAME', 'root');
 
 /**
- * The password for establishing DB connection
- *
+ * Пароль пользователя для доступа к базе данных.
  */
 define('PASSWORD', '');
 
 /**
- * The charset used for database connection
- *
+ * Кодировка, используемая в базе данных.
  */
 define('CHARSET', 'utf8');
 
