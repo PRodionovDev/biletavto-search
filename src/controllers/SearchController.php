@@ -140,4 +140,39 @@ class SearchController extends Controller
 
         return $this->redirect(['search/index', 'departure' => $departure, 'arrival' => $arrival, 'date' => $date]);
     }
+
+    /**
+     * Отображение страницы со списком маршрутов города
+     *
+     * @param string $departure город отправления
+     *
+     * @return string
+     */
+    public function actionCity($departure)
+    {
+        $model = new SearchForm();
+        $model->departure = $departure;
+        $routelist = $this->routeRepository->getAllStationRoutes($departure);
+
+        /**
+         * Список конечных станций в виде строки
+         */
+        $endStation = '';
+
+        foreach ($routelist as $key => $route) {
+            $endStation .= $route["end"] . ', ';
+        }
+
+        /**
+         * Убираем из строки последнюю запятую
+         * и пробел.
+         */
+        $endStation = substr($endStation, 0, -2);
+
+        return $this->render('city', [
+            'model' => $model,
+            'routelist' => $routelist,
+            'endStation' => $endStation 
+        ]);
+    }
 }

@@ -153,8 +153,10 @@ return [
              * Правила разбора URL.
              */
             'rules' => [
+                'search' => 'search/search',
                 '<departure>/<arrival>/<date>' => 'search/index',
                 '<departure>/<arrival>' => 'search/index',
+                '<departure>' => 'search/city',
                 '<action>' => 'search/<action>'
             ]
         ],
