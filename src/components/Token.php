@@ -22,7 +22,7 @@ class Token
         $cacheToken = Yii::$app->cache->get('token');
 
         if ($cacheToken == false) {
-            $this->resetToken();
+            $response = $this->resetToken();
         } else {
             $response = $cacheToken;
             $response = $response->token;
