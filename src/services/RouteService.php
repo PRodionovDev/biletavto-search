@@ -5,6 +5,7 @@ namespace application\services;
 use Yii;
 use application\components\Token;
 use application\components\UrlGenerator;
+use application\repositories\RouteRepository;
 
 /**
  * Сервис приложения. Выполняет функции
@@ -64,11 +65,20 @@ class RouteService
 
         /**
          * Если рейсов не обнаружено, возвращаем ошибку 404.
+         *
+         * Предварительно получаем данные о статичности рейса.
+         * Возможно, маршрут существует, но на данном этапе нет
+         * активных рейсов. В таком случае 404 - вредит выдаче.
+         *
          * Действие необходимо для того, чтобы поисковые роботы
          * не индексировали пустые страницы.
          */
         if (empty($response)) {
-            Yii::$app->response->statusCode = 404;
+            $code = new RouteRepository();
+            $code = $code->getRouteStatic($departure, $arrival);
+            $statusCode = ($code) ? $code : 404;
+
+            Yii::$app->response->statusCode = $statusCode;
         }
         
         return $response;

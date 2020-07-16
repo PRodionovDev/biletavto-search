@@ -3,6 +3,7 @@
 namespace application\repositories;
 
 use application\models\Notification;
+use application\models\RouteStatic;
 
 /**
  * Репозиторий приложения. Выполняет связующую
@@ -57,6 +58,29 @@ class RouteRepository
 
         if (!empty($response)) {
             return $response->notification;
+        }
+    }
+
+    /**
+     * Метод получения ответа для рейсов, которые
+     * не были открыты для онлайн-продаж.
+     *
+     * @param string $departure город отправления
+     * @param string $arrival   город прибытия
+     *
+     * @return integer
+     */
+    public function getRouteStatic($departure, $arrival)
+    {
+        $response = RouteStatic::find()
+            ->where([
+                'departure' => $departure,
+                'arrival' => $arrival
+            ])
+            ->one();
+
+        if (!empty($response)) {
+            return $response->status;
         }
     }
 }
