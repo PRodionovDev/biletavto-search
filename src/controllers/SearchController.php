@@ -5,6 +5,7 @@ namespace application\controllers;
 use Yii;
 use yii\web\Controller;
 use application\components\Token;
+use application\models\SearchStatistic;
 use application\models\forms\SearchForm;
 use application\repositories\RouteRepository;
 use application\services\RouteService;
@@ -142,7 +143,7 @@ class SearchController extends Controller
     }
 
     /**
-     * Отображение страницы со списком маршрутов города
+     * Отображение страницы со списком маршрутов города.
      *
      * @param string $departure город отправления
      *
@@ -155,7 +156,7 @@ class SearchController extends Controller
         $routelist = $this->routeRepository->getAllStationRoutes($departure);
 
         /**
-         * Список конечных станций в виде строки
+         * Список конечных станций в виде строки.
          */
         $endStation = '';
 
@@ -174,5 +175,27 @@ class SearchController extends Controller
             'routelist' => $routelist,
             'endStation' => $endStation 
         ]);
+    }
+
+    /**
+     * Сбор статистики поисковых запросов
+     * пользователей.
+     * 
+     * С целью сохранения быстродействия
+     * запросы работают через AJAX.
+     */
+    public function actionSearchStatistic()
+    {
+        $model = new SearchStatistic();
+
+        if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();
+
+            $model->departure = $data['departure'];
+            $model->arrival = $data['arrival'];
+            $model->date = $data['date'];
+            $model->status = $data['status'];
+            $model->save();
+        }
     }
 }

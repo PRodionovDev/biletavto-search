@@ -15,3 +15,13 @@ function chooseToday() {
     $('#date').val(today);
     $('#date').blur();
 }
+
+function randomInteger(min, max) {
+    let rand = min + Math.random() * (max + 1 - min);
+    return Math.floor(rand);
+}
+
+var count = randomInteger(1, 7);
+count = count + ' пользователей просматривает эту страницу';
+var block = document.getElementById("count-visor");
+block.innerHTML = count;

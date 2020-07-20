@@ -67,12 +67,29 @@ if (empty($ridelist)) {
     </div>
 </div>
 <script type="text/javascript">
-    function randomInteger(min, max) {
-        let rand = min + Math.random() * (max + 1 - min);
-        return Math.floor(rand);
-    }
-    var count = randomInteger(1, 7);
-    count = count + ' пользователей просматривает эту страницу';
-    var block = document.getElementById("count-visor");
-    block.innerHTML = count;
+    var departure = $("#departure").val();
+    var arrival = $("#arrival").val();
+    var date = $("#date").val();
+    var status = <?= Yii::$app->response->statusCode ?>;
+    var csrfToken = $('meta[name="csrf-token"]').attr("content");
+
+    $.ajax({
+        type : 'POST',
+        url : '/search-statistic/',
+        data : {
+            departure: departure,
+            arrival: arrival,
+            date: date,
+            status: status,
+            _csrf: csrfToken
+        }
+    }).done(function(data) {
+        if (data.error == null) {
+            console.log("Успешно");
+        } else {
+            console.log("ошибка сервера");
+        }
+    }).fail(function() {
+        console.log("ошибка запроса метрики");
+    })
 </script>
