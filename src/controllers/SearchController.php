@@ -191,11 +191,13 @@ class SearchController extends Controller
         if (Yii::$app->request->isAjax) {
             $data = Yii::$app->request->post();
 
-            $model->departure = $data['departure'];
-            $model->arrival = $data['arrival'];
-            $model->date = $data['date'];
-            $model->status = $data['status'];
-            $model->save();
+            if (!empty($data['departure']) && !empty($data['arrival'])) {
+                $model->departure = $data['departure'];
+                $model->arrival = $data['arrival'];
+                $model->date = $data['date'];
+                $model->status = $data['status'];
+                $model->save();
+            }
         }
     }
 }

@@ -70,7 +70,14 @@ if (empty($ridelist)) {
     var departure = $("#departure").val();
     var arrival = $("#arrival").val();
     var date = $("#date").val();
-    var status = <?= Yii::$app->response->statusCode ?>;
+
+    /**
+     * В отличии от статичных рейсов, которых может не быть,
+     * но они отдают 200-ответ сервера, в метрику должен
+     * уходить 404 ответ при отсутствии рейсов, для получения
+     * более точной статистики.
+     */
+    var status = <?= (empty($ridelist)) ? 404 : Yii::$app->response->statusCode ?>;
     var csrfToken = $('meta[name="csrf-token"]').attr("content");
 
     $.ajax({
