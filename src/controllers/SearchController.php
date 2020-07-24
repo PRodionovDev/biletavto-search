@@ -86,13 +86,14 @@ class SearchController extends Controller
             /**
              * Получаем параметры для поиска. Удаляем лишние пробелы,
              * если они есть. При отсутствии явно указанной даты -
-             * выбирается текущий день.
+             * выбирается текущий день. Города отправления и прибытия
+             * конвертируются в MB_CASE_TITLE.
              *
              * Для вывода даты в форму поиска, присваиваем итоговую дату
              * к свойству модели.
              */
-            $departure = trim($request['departure']);
-            $arrival = trim($request['arrival']);
+            $departure = mb_convert_case(trim($request['departure']), MB_CASE_TITLE, 'UTF-8');
+            $arrival = mb_convert_case(trim($request['arrival']), MB_CASE_TITLE, 'UTF-8');
             $date = (empty($request['date'])) ? date('d.m.Y') : date('d.m.Y', strtotime($request['date']));
             $model->date = $date;
 
