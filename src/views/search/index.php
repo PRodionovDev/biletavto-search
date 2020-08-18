@@ -4,13 +4,16 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use application\services\SeoService;
+
+$service = new SeoService();
 
 if (empty($ridelist)) {
     $this->title = 'Билеты на автобус: расписание, цены';
-    $this->registerMetaTag(['name' => 'description', 'content' => 'Приобретайте билеты на нашем сайте онлайн. Точное расписание, цены как на вокзале. Мы принимаем банковские карты, электронные деньги и наличные. Продажа билетов за 90 дней до отправления автобуса']);
+    $this->registerMetaTag(['name' => 'description', 'content' => $service->getDescription()]);
 } else {
     $this->title = 'Расписание и билеты на автобус '. $model["departure"] . ' - ' . $model["arrival"] . ' ' . date("Y") . ' / Купить по цене от ' . $ridelist[0]->price . ' руб., заказать онлайн на портале biletavto.ru';
-    $this->registerMetaTag(['name' => 'description', 'content' => 'Самый ранний выезд автобуса: ' . $ridelist[0]->departureTime]);
+    $this->registerMetaTag(['name' => 'description', 'content' => $service->getDescription($ridelist)]);
 }
 ?>
 <div class="site-index">
