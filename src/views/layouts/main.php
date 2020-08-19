@@ -17,7 +17,7 @@ AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= Html::encode($this->title) ?></title>
-    <link rel="canonical" href="/search?departure=<?= Yii::$app->request->get('departure'); ?>&arrival=<?= Yii::$app->request->get('arrival'); ?>" />
+    <link rel="canonical" href="/<?= Yii::$app->request->get('departure'); ?>/<?= Yii::$app->request->get('arrival'); ?>/today" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <script src="/js/jquery-3.3.1.min.js"></script>
     <?php $this->registerCsrfMetaTags() ?>
