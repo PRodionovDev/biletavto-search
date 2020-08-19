@@ -39,7 +39,7 @@ class RouteService
         $dateTimestamp = strtotime($date);
 
         if ($dateTimestamp < $dateNowTimestamp) {
-            Yii::$app->getResponse()->redirect('/' . $departure . '/' . $arrival . '/' . $dateNow . '/', 301)->send();
+            Yii::$app->getResponse()->redirect('/' . $departure . '/' . $arrival . '/today/', 301)->send();
         }
 
         /**
