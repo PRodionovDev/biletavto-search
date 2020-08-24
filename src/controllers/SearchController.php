@@ -80,6 +80,9 @@ class SearchController extends Controller
     {
         $model = new SearchForm();
         $request = Yii::$app->request->get();
+        $ridelist = NULL;
+        $notification = NULL;
+        $routelist = NULL;
 
         if ($model->load($request)) {
 
