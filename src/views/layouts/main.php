@@ -50,6 +50,7 @@ AppAsset::register($this);
                             </ul>
                         </li>
                         <li><a href="https://biletavto.ru/auth/"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Личный кабинет</a></li>
+                        <li><a href="https://biletavto.ru/news/"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Новости</a></li>
                     </ul>
                 </div> 
             </div>
