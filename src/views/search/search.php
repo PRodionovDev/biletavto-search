@@ -44,9 +44,9 @@ use yii\jui\DatePicker;
                         'clientOptions' => [
                             'minDate' => date('d.m.Y')
                         ]])->label(false) ?>
-                <div class="text-center search-date-blc">
+                <div class="text-center search-date-blc no_mobile">
                     <?= Html::button('Сегодня: ' . date("d.m"), ['class' => 'search-date', 'onclick' => 'chooseToday()']); ?>
-                    <p class="text-danger no_mobile"><strong>Проверьте внимательно дату отправления</strong><p>
+                    <p class="text-danger"><strong>Проверьте внимательно дату отправления</strong><p>
                 </div>
             </div>
             <div class="col-md-3">

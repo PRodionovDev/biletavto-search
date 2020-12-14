@@ -58,7 +58,7 @@ if (empty($ridelist)) {
             ]) ?>
         <?php endif; ?>
 
-        <div class="col-md-12 shadow-block">
+        <div class="col-md-12 shadow-block no_mobile">
             <div class="row">
                 <?php if (!empty($routelist)):?>
                     <?php foreach ($routelist as $route): ?>
